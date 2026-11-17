@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f1fb">
+  <meta name="description" content="Bloomday — your personal daily planner and journal.">
+  <title>Bloomday — Your Personal Daily Planner & Journal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#home" aria-label="Bloomday home">
+        <span class="brand-flower">✿</span><span>BLOOMDAY<small>YOUR LITTLE SPACE TO GROW</small></span>
+      </a>
+      <div class="side-date" id="sideDate"></div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <button class="nav-link active" data-page="home"><span>⌂</span> Home</button>
+        <button class="nav-link" data-page="tasks"><span>☷</span> My Tasks</button>
+        <button class="nav-link" data-page="calendar"><span>▦</span> Calendar</button>
+        <button class="nav-link" data-page="habits"><span>✿</span> Habit Tracker</button>
+        <button class="nav-link" data-page="journal"><span>♡</span> My Journal</button>
+        <button class="nav-link" data-page="inspiration"><span>☼</span> Motivation & Verse</button>
+        <button class="nav-link" data-page="progress"><span>↗</span> My Progress</button>
+        <button class="nav-link" data-page="settings"><span>⚙</span> Settings</button>
+      </nav>
+      <div class="sidebar-note">
+        <span>“</span>
+        <p>Small steps every day lead to beautiful things.</p>
+        <small>GROW AT YOUR OWN PACE</small>
+      </div>
+      <div class="sidebar-bottom"><span class="online-dot"></span> Your space, your pace</div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu icon-button" id="menuToggle" aria-label="Open navigation">☰</button>
+        <div class="breadcrumb">My space <span>/</span> <b id="currentSection">Home</b></div>
+        <div class="top-actions">
+          <span class="today-pill" id="topDate"></span>
+          <button class="icon-button theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle theme">☾</button>
+        </div>
+      </header>
+
+      <section class="page active" id="page-home">
+        <div class="welcome-row">
+          <div>
+            <p class="eyebrow" id="greeting">A FRESH PAGE, A NEW DAY</p>
+            <h1 id="welcomeTitle">Good morning<span class="title-flower"> ✿</span></h1>
+            <p class="muted" id="welcomeDate"></p>
+            <p class="welcome-sub">Make today meaningful, one little thing at a time.</p>
+          </div>
+          <div class="welcome-art" aria-hidden="true"><span class="sun">☼</span><span class="flower f1">✿</span><span class="flower f2">✽</span><span class="flower f3">✿</span></div>
+        </div>
+
+        <div class="quote-banner">
+          <div class="quote-mark">“</div>
+          <div><p id="homeQuote">You don't have to bloom all at once. Give yourself time.</p><small>YOUR DAILY REMINDER</small></div>
+          <button class="round-arrow" id="newHomeQuote" aria-label="New quote">↻</button>
+        </div>
+
+        <div class="section-heading"><div><p class="eyebrow">YOUR DAY AT A GLANCE</p><h2>Today’s overview</h2></div><button class="text-button" data-go="tasks">View all tasks →</button></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-icon lilac">☷</div><span class="stat-label">Tasks today</span><strong id="taskCount">0</strong><small id="taskCountHint">Ready when you are</small></article>
+          <article class="stat-card"><div class="stat-icon pink">✓</div><span class="stat-label">Completed</span><strong id="completedCount">0</strong><small id="completedHint">Every step counts</small></article>
+          <article class="stat-card"><div class="stat-icon peach">✿</div><span class="stat-label">Habits done</span><strong id="habitCount">0/0</strong><small>Little rituals, big impact</small></article>
+          <article class="stat-card"><div class="stat-icon sage">♡</div><span class="stat-label">Journal entries</span><strong id="journalCount">0</strong><small>Memories you’ve kept</small></article>
+        </div>
+
+        <div class="dashboard-grid">
+          <article class="panel today-panel">
+            <div class="panel-heading"><div><p class="eyebrow">STAY GENTLE, STAY FOCUSED</p><h3>Today’s tasks</h3></div><button class="mini-add" id="quickAddTask" aria-label="Add a task">+</button></div>
+            <div class="progress-line"><span id="taskProgressText">0% completed</span><span id="taskProgressCount">0 of 0</span></div>
+            <div class="progress-track"><div class="progress-fill" id="taskProgressBar"></div></div>
+            <div id="homeTaskList" class="compact-list"></div>
+            <button class="wide-quiet-button" data-go="tasks">Open task planner →</button>
+          </article>
+          <article class="panel verse-panel">
+            <div class="panel-heading"><div><p class="eyebrow">A LITTLE LIGHT FOR TODAY</p><h3>Bible verse of the day</h3></div><span class="tiny-flower">✿</span></div>
+            <div class="verse-reference" id="homeVerseRef">Philippians 4:6</div>
+            <blockquote id="homeVerseText">Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God.</blockquote>
+            <p class="verse-reflection" id="homeVerseReflection"></p>
+            <button class="text-button" data-go="inspiration">Read today’s reflection →</button>
+          </article>
+        </div>
+        <div class="section-heading lower-heading"><div><p class="eyebrow">A MOMENT FOR YOURSELF</p><h2>Today’s little rituals</h2></div><button class="text-button" data-go="habits">View habits →</button></div>
+        <div class="panel habit-preview" id="homeHabitList"></div>
+      </section>
+
+      <section class="page" id="page-tasks">
+        <div class="page-intro"><div><p class="eyebrow">MAKE ROOM FOR WHAT MATTERS</p><h1>My tasks <span class="title-flower">✿</span></h1><p class="muted">A clear mind starts with a gentle plan.</p></div><button class="primary-button" id="addTaskButton">＋ Add a task</button></div>
+        <div class="task-toolbar">
+          <div class="filter-tabs" id="taskFilters"><button class="selected" data-filter="all">All</button><button data-filter="pending">Pending</button><button data-filter="completed">Completed</button><button data-filter="overdue">Overdue</button></div>
+          <div class="sort-wrap"><label for="taskSort">Sort by</label><select id="taskSort"><option value="date">Deadline</option><option value="priority">Priority</option><option value="created">Recently added</option></select></div>
+        </div>
+        <div class="task-date-heading"><h3 id="taskDateHeading">Tasks for today</h3><span id="taskDateCount" class="muted small"></span></div>
+        <div class="task-list panel" id="taskList"></div>
+      </section>
+
+      <section class="page" id="page-calendar">
+        <div class="page-intro"><div><p class="eyebrow">SEE THE BIGGER PICTURE</p><h1>Your calendar <span class="title-flower">✿</span></h1><p class="muted">A little plan for all the days ahead.</p></div><button class="primary-button" id="calendarAddTask">＋ Add a task</button></div>
+        <div class="calendar-layout">
+          <article class="panel calendar-panel">
+            <div class="calendar-head"><button class="icon-button" id="prevMonth" aria-label="Previous month">←</button><h2 id="calendarMonth">Month Year</h2><button class="icon-button" id="nextMonth" aria-label="Next month">→</button></div>
+            <div class="calendar-grid weekdays"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+            <div class="calendar-grid" id="calendarDays"></div>
+            <div class="calendar-legend"><span><i class="legend-dot task-dot"></i> Tasks</span><span><i class="legend-dot journal-dot"></i> Journal</span><span><i class="legend-dot mood-dot"></i> Mood</span></div>
+          </article>
+          <article class="panel selected-day-panel"><p class="eyebrow">YOUR SELECTED DAY</p><h3 id="selectedDayTitle">Today</h3><div id="selectedDayContent"></div></article>
+        </div>
+      </section>
+
+      <section class="page" id="page-habits">
+        <div class="page-intro"><div><p class="eyebrow">TINY ACTIONS, LOVELY ROUTINES</p><h1>Habit tracker <span class="title-flower">✿</span></h1><p class="muted">Consistency is built one day at a time.</p></div><button class="primary-button" id="addHabitButton">＋ Add a habit</button></div>
+        <div class="habit-summary-grid">
+          <article class="panel habit-summary"><span class="stat-icon lilac">✿</span><div><small>Today’s progress</small><strong id="habitPercent">0%</strong></div><div class="progress-track"><div class="progress-fill" id="habitProgressBar"></div></div></article>
+          <article class="panel habit-summary"><span class="stat-icon pink">♛</span><div><small>Best current streak</small><strong id="bestStreak">0 days</strong></div><p class="muted small">Celebrate showing up.</p></article>
+        </div>
+        <div class="section-heading"><div><p class="eyebrow">YOUR DAILY CHECK-IN</p><h2 id="habitTodayHeading">Today’s habits</h2></div><span class="muted small" id="habitDateLabel"></span></div>
+        <div class="panel habit-list" id="habitList"></div>
+        <div class="section-heading lower-heading"><div><p class="eyebrow">LOOK HOW FAR YOU’VE COME</p><h2>This week</h2></div></div>
+        <div class="panel weekly-habits" id="weeklyHabits"></div>
+      </section>
+
+      <section class="page" id="page-journal">
+        <div class="page-intro"><div><p class="eyebrow">LET YOUR THOUGHTS LAND SOFTLY</p><h1>My journal <span class="title-flower">♡</span></h1><p class="muted">There is no perfect way to write. Just be honest with yourself.</p></div></div>
+        <div class="journal-layout">
+          <div class="journal-main">
+            <article class="panel journal-editor">
+              <div class="journal-date-row"><div><p class="eyebrow">DAILY REFLECTION</p><h2 id="journalDateTitle">Today’s reflection</h2></div><input type="date" id="journalDate" aria-label="Journal date"></div>
+              <div class="mood-section"><h3>How are you feeling today?</h3><div class="mood-options" id="moodOptions">
+                <button data-mood="Happy" aria-label="Happy">😊<small>Happy</small></button><button data-mood="Calm" aria-label="Calm">😌<small>Calm</small></button><button data-mood="Okay" aria-label="Okay">🙂<small>Okay</small></button><button data-mood="Tired" aria-label="Tired">😴<small>Tired</small></button><button data-mood="Sad" aria-label="Sad">🥺<small>Sad</small></button><button data-mood="Anxious" aria-label="Anxious">😟<small>Anxious</small></button><button data-mood="Excited" aria-label="Excited">🤩<small>Excited</small></button>
+              </div></div>
+              <div class="reflection-fields" id="reflectionFields">
+                <label>What did I accomplish today?<textarea data-field="accomplished" placeholder="Even the smallest wins deserve to be noticed..."></textarea></label>
+                <label>What did I do outside my to-do list?<textarea data-field="extra" placeholder="The unexpected moments count, too..."></textarea></label>
+                <label>What am I grateful for today?<textarea data-field="grateful" placeholder="A person, a moment, or something simple..."></textarea></label>
+                <label>What did I learn today?<textarea data-field="learned" placeholder="Something new about the world or yourself..."></textarea></label>
+                <label>What could I improve tomorrow?<textarea data-field="improve" placeholder="Think gently. This is a fresh start, not a judgement..."></textarea></label>
+                <label>What is currently on my mind?<textarea data-field="mind" placeholder="Let it out, without needing to make it perfect..."></textarea></label>
+                <label class="intention-field">Tomorrow’s intention<textarea data-field="intention" placeholder="Tomorrow, I want to make space for..."></textarea></label>
+              </div>
+              <div class="journal-actions"><span class="muted small" id="journalSaveStatus">Your entries stay on this device.</span><div><button class="quiet-button" id="deleteJournal">Delete entry</button><button class="primary-button" id="saveJournal">Save journal</button></div></div>
+            </article>
+          </div>
+          <aside class="panel journal-history"><p class="eyebrow">YOUR PAGES</p><h3>Past entries</h3><div id="journalHistory"></div><div class="mood-calendar-wrap"><p class="eyebrow">MOOD CALENDAR</p><div id="moodCalendar"></div></div></aside>
+        </div>
+      </section>
+
+      <section class="page" id="page-inspiration">
+        <div class="page-intro"><div><p class="eyebrow">A SOFTER KIND OF MOTIVATION</p><h1>Motivation & faith <span class="title-flower">✿</span></h1><p class="muted">A little encouragement for wherever you are today.</p></div></div>
+        <article class="quote-feature panel"><span class="quote-feature-flower">✿</span><p class="eyebrow">YOUR DAILY MOTIVATION</p><blockquote id="motivationQuote">You are allowed to grow slowly. Your pace is still progress.</blockquote><small id="motivationAuthor">A gentle reminder</small><button class="primary-button" id="newMotivation">Give me another quote ↻</button></article>
+        <div class="inspiration-grid">
+          <article class="panel verse-feature"><div class="panel-heading"><div><p class="eyebrow">VERSE OF THE DAY</p><h2>A word to carry with you</h2></div><span class="tiny-flower">✿</span></div><div class="verse-reference" id="verseRef">Philippians 4:6</div><blockquote id="verseText"></blockquote><p class="verse-reflection" id="verseReflection"></p><div class="verse-actions"><button class="quiet-button" id="nextVerse">Next verse →</button><button class="primary-button" id="copyVerse">Copy verse</button></div></article>
+          <article class="panel encouragement-panel"><p class="eyebrow">A NOTE FOR TODAY</p><h2 id="encouragementTitle">You’re doing better than you think.</h2><p id="encouragementText">Your worth is not measured by how much you finish. Rest is part of a meaningful life, too.</p><div class="encouragement-flower">❀</div></article>
+        </div>
+      </section>
+
+      <section class="page" id="page-progress">
+        <div class="page-intro"><div><p class="eyebrow">NOTICE YOUR OWN GROWTH</p><h1>My progress <span class="title-flower">↗</span></h1><p class="muted">Progress isn’t a straight line. Every effort belongs here.</p></div><select id="statsRange" class="range-select"><option value="7">Last 7 days</option><option value="30">Last 30 days</option><option value="90">Last 3 months</option></select></div>
+        <div class="stats-grid progress-stats">
+          <article class="stat-card"><div class="stat-icon lilac">☷</div><span class="stat-label">Total tasks</span><strong id="statTotalTasks">0</strong><small>All time</small></article>
+          <article class="stat-card"><div class="stat-icon pink">✓</div><span class="stat-label">Tasks completed</span><strong id="statDoneTasks">0</strong><small>Every little win</small></article>
+          <article class="stat-card"><div class="stat-icon peach">✿</div><span class="stat-label">Habit check-ins</span><strong id="statHabitChecks">0</strong><small>Positive routines</small></article>
+          <article class="stat-card"><div class="stat-icon sage">♡</div><span class="stat-label">Journal entries</span><strong id="statJournals">0</strong><small>Days reflected on</small></article>
+        </div>
+        <div class="progress-layout">
+          <article class="panel chart-panel"><div class="panel-heading"><div><p class="eyebrow">YOUR CONSISTENCY</p><h3>Daily task completion</h3></div><span class="chart-legend"><i></i> Completed</span></div><div id="productivityChart" class="bar-chart"></div></article>
+          <article class="panel rate-panel"><p class="eyebrow">A LITTLE PERSPECTIVE</p><h3>Completion rate</h3><strong id="completionRate">0%</strong><div class="progress-track"><div class="progress-fill" id="completionRateBar"></div></div><p class="muted small" id="activeDays">0 active days in this period</p><div class="rate-flower">✿</div></article>
+        </div>
+      </section>
+
+      <section class="page" id="page-settings">
+        <div class="page-intro"><div><p class="eyebrow">MAKE THIS SPACE YOURS</p><h1>Settings <span class="title-flower">✿</span></h1><p class="muted">Your planner should feel like your own little corner.</p></div></div>
+        <div class="settings-grid">
+          <article class="panel settings-card"><p class="eyebrow">APPEARANCE</p><h3>Choose your atmosphere</h3><div class="setting-row"><div><b>Dark mode</b><small>Easy on the eyes, day or night.</small></div><label class="switch"><input type="checkbox" id="darkModeSetting"><span></span></label></div></article>
+          <article class="panel settings-card"><p class="eyebrow">REMINDERS</p><h3>Gentle nudges</h3><p class="muted small">Browser reminders work while this page is open. Some browsers may delay notifications when the tab is inactive; they are not guaranteed when the browser is closed.</p><button class="quiet-button" id="enableNotifications">Enable browser notifications</button><span id="notificationStatus" class="small muted">Permission not requested.</span><div class="setting-row"><div><b>Journal reminder</b><small>Choose a time to be reminded to reflect.</small></div><input type="time" id="journalReminderTime" value="20:30"></div><div class="setting-row"><div><b>Habit reminder</b><small>A small prompt to check in.</small></div><input type="time" id="habitReminderTime" value="09:00"></div><button class="primary-button" id="saveReminderSettings">Save reminder settings</button></article>
+          <article class="panel settings-card"><p class="eyebrow">YOUR DATA</p><h3>Keep your memories safe</h3><p class="muted small">Your planner data is stored locally in this browser. Export a backup regularly, especially before clearing browser data or switching devices.</p><div class="data-actions"><button class="primary-button" id="exportBackup">↓ Export backup</button><label class="quiet-button file-label">↑ Import backup<input type="file" id="importBackup" accept="application/json,.json"></label></div><button class="danger-text" id="clearAllData">Clear all Bloomday data</button></article>
+          <article class="panel settings-card about-card"><p class="eyebrow">A NOTE FROM BLOOMDAY</p><h3>Plan your day, grow at your own pace.</h3><p class="muted">Bloomday is your gentle space for planning, reflection, faith, and little everyday wins. There is no rush to become someone else. Keep growing into yourself.</p><span class="about-flower">✿</span></article>
+        </div>
+        <p class="storage-note" id="storageStatus">Data storage: checking…</p>
+      </section>
+
+      <footer class="footer">Made with care <span>✿</span> Bloomday · Your pace is enough.</footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="taskModal" hidden>
+    <form class="modal panel" id="taskForm">
+      <div class="modal-heading"><div><p class="eyebrow">MAKE A LITTLE PLAN</p><h2 id="taskModalTitle">Add a task</h2></div><button type="button" class="icon-button close-modal" data-close="taskModal" aria-label="Close">×</button></div>
+      <input type="hidden" id="taskId">
+      <label>Task title<input id="taskTitle" type="text" maxlength="120" placeholder="What would you like to do?" required></label>
+      <label>Notes<textarea id="taskNotes" rows="2" placeholder="Add a little detail (optional)"></textarea></label>
+      <div class="form-two"><label>Category<select id="taskCategory"><option>Study</option><option>Personal</option><option>Work</option><option>Health</option><option>Faith</option><option>Other</option></select></label><label>Priority<select id="taskPriority"><option>Medium</option><option>High</option><option>Low</option></select></label></div>
+      <div class="form-two"><label>Deadline date<input id="taskDueDate" type="date" required></label><label>Deadline time<input id="taskDueTime" type="time"></label></div>
+      <div class="modal-actions"><button type="button" class="quiet-button" data-close="taskModal">Cancel</button><button type="submit" class="primary-button">Save task</button></div>
+    </form>
+  </div>
+  <div class="modal-backdrop" id="habitModal" hidden>
+    <form class="modal panel" id="habitForm">
+      <div class="modal-heading"><div><p class="eyebrow">A ROUTINE THAT FEELS GOOD</p><h2>Add a habit</h2></div><button type="button" class="icon-button close-modal" data-close="habitModal" aria-label="Close">×</button></div>
+      <label>Habit name<input id="habitName" type="text" maxlength="70" placeholder="e.g. Read for 15 minutes" required></label>
+      <label>Choose an icon<select id="habitIcon"><option>📚</option><option>💧</option><option>🧘</option><option>🙏</option><option>📖</option><option>🌿</option><option>🏃</option><option>☕</option><option>✨</option></select></label>
+      <div class="modal-actions"><button type="button" class="quiet-button" data-close="habitModal">Cancel</button><button type="submit" class="primary-button">Add habit</button></div>
+    </form>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./script.js"></script>
+</body>
+</html>
